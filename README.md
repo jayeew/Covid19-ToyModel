@@ -1,5 +1,8 @@
 # Covid19-ToyModel
-A toy model used to predict the 'confirmedIncr' based on China-Covid19-province data.
+A toy model used to predict the 'confirmedIncr' based on China-Covid19-province data.  
+```
+“不能说完全没效果，只能说没有一点用”
+```
 
 ## Requirement
 This project should be able to run without any modification after following packages installed.  
