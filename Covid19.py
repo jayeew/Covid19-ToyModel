@@ -51,7 +51,7 @@ class Covid19(torch.nn.Module):
         super(Covid19, self).__init__()
         self.hidden = args.hidden
         self.dropout = args.dropout
-        self.gru = LSTM(input_size = self.hidden,
+        self.LSTM = LSTM(input_size = self.hidden,
                         hidden_size = self.hidden,
                         num_layers = 1,
                         bias = True,
@@ -63,14 +63,14 @@ class Covid19(torch.nn.Module):
         self.reset_parameters()
 
     def reset_parameters(self):
-        self.gru.reset_parameters()
+        self.LSTM.reset_parameters()
         self.lin.reset_parameters()
 
     def forward(self, x):
         x = F.dropout(x, self.dropout, training=self.training)
         x = F.normalize(x, p=2, dim=-1)
         x = x.permute(1, 0, 2)
-        _, (h, _) = self.gru(x)
+        _, (h, _) = self.LSTM(x)
         out = torch.cat((h[0], h[1]), dim=-1)
         # print(out.size())
         # out = out.permute(1, 0, 2).squeeze() #(N, hidden)
